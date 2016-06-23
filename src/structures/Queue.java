@@ -15,9 +15,11 @@ public class Queue<T> {
 	 *
 	 */
 	class CLLNode<E> {
-		E data; CLLNode<E> next;
+		E data; 
+		CLLNode<E> next;
 		CLLNode(E data) { 
-			this.data = data; next = null;
+			this.data = data; 
+			next = null;
 		}
 	}
 	
@@ -35,7 +37,8 @@ public class Queue<T> {
 	 * Initializes a new queue instance to empty.  
 	 */
 	public Queue() {
-		rear = null; size=0;
+		rear = null; 
+		size = 0;
 	}
 	
 	/**
@@ -47,7 +50,8 @@ public class Queue<T> {
 		CLLNode<T> temp = new CLLNode<T>(item);
 		if (size == 0) {
 			temp.next = temp;
-		} else {
+		} 
+		else {
 			temp.next = rear.next;
 			rear.next = temp;
 		}
@@ -61,13 +65,15 @@ public class Queue<T> {
 	 * @return Item that is dequeued.
 	 * @throws NoSuchElementException if item is not in queue.
 	 */
-	public T dequeue() 
-	throws NoSuchElementException { 
-		if (size == 0) throw new NoSuchElementException();
+	public T dequeue() throws NoSuchElementException { 
+		if (size == 0) {
+			throw new NoSuchElementException();
+		}
 		T o = rear.next.data;
 		if (size == 1) {
 			rear = null; 
-		} else {
+		} 
+		else {
 			rear.next = rear.next.next;
 		}
 		size--;
@@ -80,9 +86,10 @@ public class Queue<T> {
 	 * @return First item in the queue.
 	 * @throws NoSuchElementException if queue is empty.
 	 */
-	public T peek() 
-	throws NoSuchElementException { 
-		if (size == 0) throw new NoSuchElementException();
+	public T peek() throws NoSuchElementException { 
+		if (size == 0) {
+			throw new NoSuchElementException();
+		}
 		return rear.next.data;
 	}
 	
@@ -91,7 +98,7 @@ public class Queue<T> {
 	 * 
 	 * @return True if empty, false otherwise.
 	 */
-	public boolean isEmpty(){
+	public boolean isEmpty() {
 		return size == 0;
 	}
 	
@@ -100,10 +107,9 @@ public class Queue<T> {
 	 * 
 	 * @return Number of items.
 	 */
-	public int size(){
+	public int size() {
 		return size;
-	}
-	
+	}	
 }
 
 

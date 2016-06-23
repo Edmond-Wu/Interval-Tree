@@ -22,41 +22,29 @@ public class Sorter
 	 */
 	public static void sortIntervals(ArrayList<Interval> intervals, char lr) 
 	{
-		if (lr != 'l' && lr != 'r')
+		if (lr != 'l' && lr != 'r') {
 			return;
-		
-		if (intervals.size() == 0)
+		}
+		else if (intervals.size() == 0) {
 			return;
-		
-		else
-		{
-			if (lr == 'l')
-			{
-				for (int i=1; i<intervals.size(); i++)
-				{
-					Interval inserted = intervals.get(i);
-					int j = i-1;
-					while (j >= 0 && intervals.get(j).leftEndPoint > inserted.leftEndPoint)
-					{
-						intervals.set(j+1, intervals.get(j));
+		}
+		else {
+			for (int i = 1; i < intervals.size(); i++) {
+				int j = i - 1;
+				Interval inserted = intervals.get(i);
+				if (lr == '1') {
+					while (j >= 0 && intervals.get(j).leftEndPoint > inserted.leftEndPoint) {
+						intervals.set(j + 1, intervals.get(j));
 						j--;
 					}
-					intervals.set(j+1, inserted);
 				}
-			}
-			else
-			{
-				for (int i=1; i<intervals.size(); i++)
-				{
-					Interval inserted = intervals.get(i);
-					int j = i-1;
-					while (j >= 0 && intervals.get(j).rightEndPoint > inserted.rightEndPoint)
-					{
-						intervals.set(j+1, intervals.get(j));
+				else {
+					while (j >= 0 && intervals.get(j).rightEndPoint > inserted.rightEndPoint) {
+						intervals.set(j + 1, intervals.get(j));
 						j--;
 					}
-					intervals.set(j+1, inserted);
 				}
+				intervals.set(j + 1, inserted);
 			}
 		}
 	}
@@ -69,36 +57,29 @@ public class Sorter
 	 * @param rightSortedIntervals Array list of intervals sorted according to right endpoints
 	 * @return Sorted array list of all endpoints without duplicates
 	 */
-	public static ArrayList<Integer> getSortedEndPoints(ArrayList<Interval> leftSortedIntervals, ArrayList<Interval> rightSortedIntervals) 
-	{
+	public static ArrayList<Integer> getSortedEndPoints(ArrayList<Interval> leftSortedIntervals, ArrayList<Interval> rightSortedIntervals) {
 		ArrayList<Integer> points = new ArrayList<Integer>();
 		
-		for (int i = 0; i < leftSortedIntervals.size(); i++)
-		{
+		for (int i = 0; i < leftSortedIntervals.size(); i++) {
 			points.add(leftSortedIntervals.get(i).leftEndPoint);
 		}
 		
-		for (int i = 0; i < points.size() - 2; i++)
-		{
-			while (points.get(i) == points.get(i + 1))
-			{
+		for (int i = 0; i < points.size() - 2; i++) {
+			while (points.get(i) == points.get(i + 1)) {
 				points.remove(i + 1);
 			}
 		}
 		
-		for (int i = 0; i < rightSortedIntervals.size(); i++)
-		{
-			if (!points.contains(rightSortedIntervals.get(i).rightEndPoint))
-			{
+		for (int i = 0; i < rightSortedIntervals.size(); i++) {
+			if (!points.contains(rightSortedIntervals.get(i).rightEndPoint)) {
 				points.add(rightSortedIntervals.get(i).rightEndPoint);
 			}
 		}
 		
-		for (int i = 1; i < points.size(); i++)
-		{
+		for (int i = 1; i < points.size(); i++) {
 			int inserted = points.get(i);
 			int j = i - 1;
-			while (j >= 0 && points.get(j) > inserted){
+			while (j >= 0 && points.get(j) > inserted) {
 				points.set(j + 1, points.get(j));
 				j--;
 			}
